@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+
     const navigate = useNavigate();
 
     return (
@@ -11,6 +12,7 @@ const Navbar = () => {
             </div>
         </nav>
     );
+    
 };
 
 export default Navbar;

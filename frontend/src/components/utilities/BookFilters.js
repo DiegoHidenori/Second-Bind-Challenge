@@ -1,9 +1,12 @@
 import React from "react";
 
 const BookFilters = ({ filters, onChange, onApplyFilters, onClearFilters }) => {
+
     const handleInputChange = (e) => {
+
         const { name, value } = e.target;
         onChange(name, value);
+        
     };
 
     return (

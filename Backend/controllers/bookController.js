@@ -1,7 +1,5 @@
 const Book = require('../models/Book');
 const { validationResult } = require('express-validator');
-const fs = require('fs');
-const path = require('path');
 const { Op } = require('sequelize');
 
 const getBooks = async (req, res) => {

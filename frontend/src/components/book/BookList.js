@@ -1,74 +1,103 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { fetchFilteredBooks } from "../utilities/Filter";
 import BookFilters from "../utilities/BookFilters";
 
 const BookList = () => {
+
     const [books, setBooks] = useState([]);
     const navigate = useNavigate();
     const [filters, setFilters] = useState({
+
         title: "",
         author: "",
         genre: "",
         publication_date: "",
+
     });
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+
         fetchBooks();
+
     }, []);
 
-    // const exportBooks = () => {
-    //     navigate(`/books/export`);
-    // };
-
     const fetchBooks = async () => {
+
         setLoading(true);
         try {
+
             const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/books`);
             setBooks(response.data.books);
             console.log(response.data.books);
+
         } catch (error) {
+
             console.error("Error fetching books:", error);
+
         } finally {
+
             setLoading(false);
+
         }
+
     };
 
     const handleFilterChange = (name, value) => {
+
         setFilters((prevFilters) => ({
+
             ...prevFilters,
             [name]: value,
+
         }));
+
     };
 
     const applyFilters = async () => {
+
         setLoading(true);
         try {
+
             const filteredBooks = await fetchFilteredBooks(filters);
             setBooks(filteredBooks);
+
         } catch (error) {
+
             console.error("Error applying filters:", error);
+
         } finally {
+
             setLoading(false);
+
         }
+
     };
 
     const clearFilters = () => {
+
         setFilters({
+
             title: "",
             author: "",
             genre: "",
             publication_date: "",
+
         });
         fetchBooks();
+
     };
 
     const exportBooks = async () => {
+
         try {
+
             const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/books/export`, {
+
                 responseType: 'blob',
+                
             });
     
             const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -79,9 +108,13 @@ const BookList = () => {
             link.click();
     
             document.body.removeChild(link);
+
         } catch (error) {
+
             console.error('Error exporting books:', error);
+
         }
+
     };
 
     return (

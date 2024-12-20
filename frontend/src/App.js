@@ -5,15 +5,18 @@ import BookList from './components/book/BookList';
 import AddBook from './components/book/AddBook';
 
 const WithNavbar = ({ children }) => {
+
   return (
     <>
       <Navbar />
       {children}
     </>
   )
+
 }
 
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -23,6 +26,7 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
+  
 }
 
 export default App;

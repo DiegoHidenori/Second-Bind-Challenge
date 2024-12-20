@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/db');
 
 const Book = sequelize.define('Book', {
+
     entry_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -27,9 +28,12 @@ const Book = sequelize.define('Book', {
         type: DataTypes.STRING,
         allowNull: false,
     }
+
 }, {
+
     tableName: 'inventory',
     timestamps: false,
+    
 });
 
 module.exports = Book;

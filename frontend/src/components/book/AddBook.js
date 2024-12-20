@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -11,21 +11,29 @@ const AddBook = () => {
     const navigate = useNavigate();
 
     const handleAddBook = async (e) => {
+
         e.preventDefault();
         try {
+
             await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/books`, {
+
                 title,
                 author,
                 genre,
                 publication_date: publicationDate,
                 isbn
+                
             });
             alert('Book added successfully');
             navigate("/books");
+
         } catch (error) {
+
             console.error(error);
             alert('Failed to add book');
+
         }
+
     };
 
     return (
